@@ -6,6 +6,8 @@ import Category2 from './components/Category2';
 import Services from './components/Services';
 import Banner from './components/Banner';
 import Products from './components/Products';
+import Blogs from './components/Blogs';
+import Footer from './components/Footer'
 
 import Headphone2 from "./assets/headphone2.png"
 import Watch2 from "./assets/watch2.png"
@@ -44,6 +46,8 @@ const App = () => {
       <Banner data = {BannerData}/>
       <Products />
       <Banner data = {BannerData2}/>
+      <Blogs />
+      <Footer />
     </div>
   )
 }

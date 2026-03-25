@@ -56,7 +56,7 @@ const Navbar = () => {
           <div className='flex items-center'>
             <a
               href='#'
-              className='text-cyan-700 font-semibold tracking-widest text-2xl uppercase sm:text-3xl'
+              className='text-blue-700 font-semibold tracking-widest text-2xl uppercase sm:text-3xl'
             >
               Techshop
             </a>
