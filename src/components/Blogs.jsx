@@ -10,18 +10,21 @@ const BlogData = [
         subtitle: "Exploring how modern devices like smartphones, laptops, and smart wearables are reshaping the way we live, work, and connect",
         published: "March 25, 2026",
         image: Img1,
+        aosDelay: "0",
     },
     {
         title: "Must-Have Tech Gadgets in 2026",
         subtitle: "A curated list of the latest and most useful gadgets that can upgrade your daily lifestyle and productivity",
         published: "March 25, 2026",
         image: Img2,
+        aosDelay: "200",
     },
     {
         title: "Smart Living: How Technology is Changing Our Homes",
         subtitle: "Discover how smart devices and automation are making homes more efficient, secure, and convenient than ever before",
         published: "March 25, 2026",
         image: Img3,
+        aosDelay: "400",
     },
 ]
 
@@ -40,8 +43,12 @@ const Blogs = () => {
             {/* Blog Card */}
             {
                 BlogData.map((data) => (
-                    <div key={data.title} className='bg-white
-                    dark:bg-gray-900'>
+                    <div 
+                      data-aos="fade-up"
+                      data-aos-delay={data.aosDelay}
+                      key={data.title} 
+                      className='bg-white
+                      dark:bg-gray-900'>
                         {/* image section */}
                         <div className='overflow-hidden rounded-2xl mb-2'>
                             <img src={data.image} 
