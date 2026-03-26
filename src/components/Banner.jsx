@@ -11,7 +11,7 @@ const Banner = ({data}) => {
 
             {/* first col */}
             <div className='p-6 sm:p-8'>
-                <p data-aos="slide-right" className='text-sm'>
+                <p data-aos="slide-right" className='text-sm font-bold'>
                   {data.discount}</p>
                 <h1 
                   data-aos="zoom-out"
@@ -22,7 +22,7 @@ const Banner = ({data}) => {
                 </h1>
                 <p 
                   data-aos="fade-up"
-                  className='text-sm'>{data.date}</p>
+                  className='text-sm font-bold'>{data.date}</p>
             </div>
 
             {/* secone col */}

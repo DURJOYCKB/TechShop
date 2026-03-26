@@ -17,7 +17,7 @@ import Watch2 from "./assets/watch2.png"
 
 const BannerData = {
   discount: "30% OFF",
-  title: "Fine Smile",
+  title: "Sounds Good",
   date: "10 Apr to 28 Apr",
   image: Headphone2,
   title2: "Air Solo Bass",
@@ -33,7 +33,7 @@ const BannerData2 = {
   image: Watch2,
   title2: "Air Solo Bass",
   title3: "Winner Sale",
-  title4: "Dive into a world of pure sound and feel the music the way it was meant to be.",
+  title4: "Dive into a world of pure time and feel the moments the way it was meant to be.",
   bgColor: "#5b40beff",
 }
 
