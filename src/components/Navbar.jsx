@@ -2,6 +2,7 @@ import React from 'react'
 import { IoMdSearch, IoMdMenu, IoMdClose } from 'react-icons/io'
 import { FaCaretDown, FaCartShopping } from 'react-icons/fa6'
 import DarkMode from './DarkMode'
+import { motion, AnimatePresence } from "framer-motion"
 
 const MenuLinks = [
   {
@@ -44,7 +45,7 @@ const DropdownLinks = [
   }
 ]
 
-const Navbar = ({handleOrderPopup}) => {
+const Navbar = ({ handleOrderPopup }) => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return (
@@ -52,7 +53,7 @@ const Navbar = ({handleOrderPopup}) => {
       dark:text-white duration-200 z-40'>
       <div className='py-4'>
         <div className='container flex items-center justify-between'>
-          
+
           {/* Left section - Logo */}
           <div className='flex items-center'>
             <a
@@ -110,7 +111,7 @@ const Navbar = ({handleOrderPopup}) => {
 
           {/* Right section */}
           <div className='flex items-center gap-4'>
-            
+
             {/* Search bar section */}
             <div className='relative group hidden sm:block'>
               <input
@@ -145,52 +146,59 @@ const Navbar = ({handleOrderPopup}) => {
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className='lg:hidden bg-white dark:bg-gray-900 shadow-md mt-2'>
-            <ul className='flex flex-col gap-2 py-4 px-6'>
-              
-              {/* Mobile Search Bar */}
-              <li className='w-full'>
-                <div className='relative group'>
-                  <input
-                    type='text'
-                    placeholder='Search'
-                    className='w-full rounded-full border border-gray-300 dark:border-gray-700 bg-transparent px-4 py-2 pr-10 text-gray-700 dark:text-white outline-none'
-                  />
-                  <IoMdSearch
-                    className='text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200'
-                  />
-                </div>
-              </li>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className='lg:hidden bg-white dark:bg-gray-900 shadow-md mt-2'
+            >
+              <ul className='flex flex-col gap-2 py-4 px-6'>
 
-              {/* Main Links */}
-              {MenuLinks.map((data) => (
-                <li key={data.id} className='w-full'>
-                  <a
-                    href={data.link}
-                    className='text-gray-500 dark:text-gray-300 dark:hover:text-white duration-200 block w-full p-2 hover:bg-primary/20 rounded-md font-semibold'
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {data.name}
-                  </a>
+                {/* Mobile Search Bar */}
+                <li className='w-full'>
+                  <div className='relative group'>
+                    <input
+                      type='text'
+                      placeholder='Search'
+                      className='w-full rounded-full border border-gray-300 dark:border-gray-700 bg-transparent px-4 py-2 pr-10 text-gray-700 dark:text-white outline-none'
+                    />
+                    <IoMdSearch
+                      className='text-xl text-gray-600 group-hover:text-primary dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3 duration-200'
+                    />
+                  </div>
                 </li>
-              ))}
 
-              {/* Quick Links in Mobile */}
-              {DropdownLinks.map((data) => (
-                <li key={data.id} className='w-full'>
-                  <a
-                    href={data.link}
-                    className='text-gray-500 dark:text-gray-300 dark:hover:text-white duration-200 block w-full p-2 hover:bg-primary/20 rounded-md font-semibold'
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {data.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+                {/* Main Links */}
+                {MenuLinks.map((data) => (
+                  <li key={data.id} className='w-full'>
+                    <a
+                      href={data.link}
+                      className='text-gray-500 dark:text-gray-300 dark:hover:text-white duration-200 block w-full p-2 hover:bg-primary/20 rounded-md font-semibold'
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+
+                {/* Quick Links in Mobile */}
+                {DropdownLinks.map((data) => (
+                  <li key={data.id} className='w-full'>
+                    <a
+                      href={data.link}
+                      className='text-gray-500 dark:text-gray-300 dark:hover:text-white duration-200 block w-full p-2 hover:bg-primary/20 rounded-md font-semibold'
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )

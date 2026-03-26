@@ -1,52 +1,87 @@
 import React from 'react'
-import {FaCarSide, FaHeadphonesAlt, FaWallet, FaCheckCircle} from "react-icons/fa";
+import { motion } from 'framer-motion'
+import { FaCarSide, FaHeadphonesAlt, FaWallet, FaCheckCircle } from "react-icons/fa";
 
 const ServiceData = [
-    {
-        id: 1,
-        icon: <FaCarSide className='text-4xl md:text-5xl text-primary' />,
-        title: "Free Shipping",
-        description: "Free Shipping On All Order",
-    },
-    {
-        id: 2,
-        icon: <FaCheckCircle className='text-4xl md:text-5xl text-primary' />,
-        title: "Free Shipping",
-        description: "30 Days Money Back",
-    },
-    {
-        id: 3,
-        icon: <FaWallet className='text-4xl md:text-5xl text-primary' />,
-        title: "Secure Payment",
-        description: "All Payment Secure",
-    },
-    {
-        id: 4,
-        icon: <FaHeadphonesAlt className='text-4xl md:text-5xl text-primary' />,
-        title: "Online Support 24/7",
-        description: "Technical Supprt 24/7",
-    },
+  {
+    id: 1,
+    icon: <FaCarSide />,
+    title: "Free Shipping",
+    description: "Free shipping on all orders",
+  },
+  {
+    id: 2,
+    icon: <FaCheckCircle />,
+    title: "Money Back",
+    description: "30 days money back guarantee",
+  },
+  {
+    id: 3,
+    icon: <FaWallet />,
+    title: "Secure Payment",
+    description: "All payments are secure",
+  },
+  {
+    id: 4,
+    icon: <FaHeadphonesAlt />,
+    title: "24/7 Support",
+    description: "Technical support 24/7",
+  },
 ]
+
+const ServiceCard = ({ item }) => {
+  return (
+    <motion.div
+      whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
+      transition={{ duration: 0.3 }}
+      className="flex items-center gap-4 p-5 rounded-2xl
+      bg-white dark:bg-gray-900 border border-transparent
+      hover:border-primary/40 transition-all duration-300"
+    >
+      {/* Icon with bounce animation */}
+      <motion.div
+        className="text-primary text-3xl md:text-4xl bg-primary/10 p-3 rounded-xl"
+        animate={{ y: [0, -5, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+      >
+        {item.icon}
+      </motion.div>
+
+      {/* Text */}
+      <div>
+        <h3 className="text-base md:text-lg font-semibold">
+          {item.title}
+        </h3>
+        <p className="text-gray-500 text-sm">
+          {item.description}
+        </p>
+      </div>
+    </motion.div>
+  )
+}
 
 const Services = () => {
   return (
-    <div>
-      <div className="container my-14 md:my-20">
-        <div className="grid grid-cols2 lg:grid-cols-4 gap-4
-        gap-y-8">
-            {ServiceData.map((data) => (
-                <div className='flex flex-col items-start sm:flex-row
-                gap-4' >
-                    {data.icon}
-                    <div>
-                        <h1 className='lg:text-xl font-bold'>{data.title}</h1>
-                        <h1 className='text-gray-400 text-sm'>{data.description}</h1>
-                    </div>
-                </div>
+    <div className="my-16">
+      <div className="container">
 
-            ))}
-            
+        {/* Section Title */}
+        <div className="mb-10 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold">
+            Our Services
+          </h2>
+          <p className="text-gray-500 text-sm mt-2">
+            Why shop with us
+          </p>
         </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {ServiceData.map((item) => (
+            <ServiceCard key={item.id} item={item} />
+          ))}
+        </div>
+
       </div>
     </div>
   )

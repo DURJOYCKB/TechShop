@@ -1,74 +1,96 @@
 import React from 'react'
-import Button  from './Button'
+import { motion } from 'framer-motion'
+import Button from './Button'
 import Earphone from '../assets/earphones.png'
 import Watch from '../assets/watch.png'
 import Laptop from '../assets/laptop.png'
 
+const CategoryCard = ({ title, img, bg, btnBg, btnText }) => {
+  return (
+    <motion.div
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.3 }}
+      className={`relative h-[320px] p-6 ${bg} text-white rounded-3xl 
+      flex items-end overflow-hidden shadow-md hover:shadow-2xl`}
+    >
+      {/* Soft glow (behind product, not random) */}
+      <div className="absolute w-[220px] h-[220px] bg-white/10 blur-3xl rounded-full right-10 top-1/2 -translate-y-1/2"></div>
+
+      {/* Content */}
+      <div className="z-10">
+        <p className="text-sm text-white/70">Enjoy</p>
+        <p className="text-xl font-medium">With</p>
+
+        <h2 className="text-4xl xl:text-5xl font-bold opacity-60 mb-4">
+          {title}
+        </h2>
+
+        <Button
+          text="Browse"
+          bgColor={btnBg}
+          textColor={btnText}
+        />
+      </div>
+
+      {/* Image */}
+      <motion.img
+        src={img}
+        alt={title}
+        initial={{ scale: 0.95 }}
+        whileHover={{ scale: 1.08, rotate: 1 }}
+        transition={{ duration: 0.35 }}
+        className="absolute bottom-0 right-0 w-[230px] sm:w-[300px]
+        object-contain z-0 drop-shadow-[0_25px_40px_rgba(0,0,0,0.5)]"
+      />
+    </motion.div>
+  )
+}
+
 const Category = () => {
   return (
-    <div className='py-8'>
-      <div className='container'>
-        <div className='grid grid-cols-1 sm:grid-cols-2
-        lg:grid-cols-4 gap-8'>
+    <div className="py-14">
+      <div className="container">
 
-          {/* frist col */}
-          <div className='py-10 pl-5 bg-gradient-to-br from-black/90 
-          to-black/70 text-white rounded-3xl relative h-[320px]
-          flex items-end'>
-            <div>
-                <div className='mb-4'>
-                    <p className="mb-[2px] text-gray-400">Enjoy</p>
-                    <p className='text-2xl font-semibold mb-[2px]'>With</p>
-                    <p className='text-4xl xl:text-5xl font-bold opacity-20 mb-2'>Earphone</p>
-                    <Button 
-                    text="Browse"
-                    bgColor={"bg-primary"}
-                    textColor={"text-white"}
-                    />
-                </div>
-            </div>
-            <img src={Earphone} alt="" className='w-[290px] absolute
-            bottom-0 right-0 translate-x-5'/>
-          </div>
+        {/* Section Title */}
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold">
+            Shop by Category
+          </h2>
+          <p className="text-gray-500 text-sm mt-2">
+            Explore our trending tech collections
+          </p>
+        </div>
 
-          {/* second col */}
-          <div className='py-10 pl-5 bg-gradient-to-br from-brandYellow 
-          to-brandYellow/90 text-white rounded-3xl relative h-[320px]
-          flex items-end'>
-            <div>
-                <div className='mb-4'>
-                    <p className="mb-[2px] text-white">Enjoy</p>
-                    <p className='text-2xl font-semibold mb-[2px]'>With</p>
-                    <p className='text-4xl xl:text-5xl font-bold opacity-40 mb-2'>Watches</p>
-                    <Button 
-                    text="Browse"
-                    bgColor={"bg-white"}
-                    textColor={"text-black"}
-                    />
-                </div>
-            </div>
-            <img src={Watch} alt="" className='w-[240px] absolute
-            bottom-9 -right-0 translate-x-6'/>
-          </div>
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-          {/* third col */}
-          <div className='col-span-2 py-10 pl-5 bg-gradient-to-br from-red-600 
-          to-red-300 text-white rounded-3xl relative h-[320px]
-          flex items-end'>
-            <div>
-                <div className='mb-4'>
-                    <p className="mb-[2px] text-white">Enjoy</p>
-                    <p className='text-2xl font-semibold mb-[2px]'>With</p>
-                    <p className='text-4xl xl:text-5xl font-bold opacity-40 mb-2'>Laptop</p>
-                    <Button 
-                    text="Browse"
-                    bgColor={"bg-yellow-200"}
-                    textColor={"text-black"}
-                    />
-                </div>
-            </div>
-            <img src={Laptop} alt="" className='w-[350px] absolute
-            top-1/2 -translate-y-1/2 -right-0'/>
+          {/* Earphones */}
+          <CategoryCard
+            title="Earphones"
+            img={Earphone}
+            bg="bg-gradient-to-br from-black/90 to-black/70"
+            btnBg="bg-primary"
+            btnText="text-white"
+          />
+
+          {/* Watches */}
+          <CategoryCard
+            title="Watches"
+            img={Watch}
+            bg="bg-gradient-to-br from-yellow-400 to-yellow-300"
+            btnBg="bg-white"
+            btnText="text-black"
+          />
+
+          {/* Laptop (big card) */}
+          <div className="sm:col-span-2">
+            <CategoryCard
+              title="Laptops"
+              img={Laptop}
+              bg="bg-gradient-to-br from-red-600 to-red-400"
+              btnBg="bg-white"
+              btnText="text-black"
+            />
           </div>
 
         </div>
